@@ -1,0 +1,8 @@
+<launch version="0.1.1">
+  <!-- This needs to be on top sine 'find-pkg-share' combined 
+       with included moves the 'current' launch directory -->
+  <include file="$(dirname)/../cam_oled_streamer.launch.xml" />
+
+  <include file="$(find-pkg-share mirte_bringup)/launch/minimal.launch.py" />
+  <include file="$(find-pkg-share mirte_bringup)/launch/camera.launch.py" />
+</launch>

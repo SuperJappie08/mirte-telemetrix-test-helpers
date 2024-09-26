@@ -1,0 +1,15 @@
+<launch version="0.1.1">
+  <!-- This is a kinda cursed hack to get the Mirte Machine namspace -->
+  <arg name="machine_namespace"
+    description="The namespace containing all Robot specific ROS communication"
+    default="$(eval 'exec(\'import platform\', globals()) or platform.node().replace(\'-\',\'_\').lower()')" />
+
+  <arg name="image_topic"
+    description="The source sensors_msgs/msg/Image topic"
+    default="/image_raw" />
+
+  <node pkg="mirte_telemetrix_test_helpers" exec="image_streamer" name="image_streamer"
+    namespace="$(var machine_namespace)">
+    <remap from="/image" to="$(var image_topic)" />
+  </node>
+</launch>
